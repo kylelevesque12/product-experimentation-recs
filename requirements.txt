@@ -1,0 +1,9 @@
+pandas>=2.2,<3.0
+numpy>=1.26,<2.0
+matplotlib
+seaborn
+jupyter
+pytest
+requests
+tqdm
+ipykernel
