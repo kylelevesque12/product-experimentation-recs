@@ -114,3 +114,18 @@ def temporal_train_test_split(
     test = pd.concat(test_parts).reset_index(drop=True)
 
     return train, test
+
+
+def save_train_test_data(train: pd.DataFrame, test: pd.DataFrame) -> tuple[Path, Path]:
+    """Save the train and test data to the processed directory."""
+    processed_data_dir = get_processed_data_dir()
+    processed_data_dir.mkdir(parents=True, exist_ok=True)
+
+    train_path = processed_data_dir / "train_ratings.csv"
+    test_path = processed_data_dir / "test_ratings.csv"
+
+    train.to_csv(train_path, index=False)
+    test.to_csv(test_path, index=False)
+
+    return train_path, test_path
+
