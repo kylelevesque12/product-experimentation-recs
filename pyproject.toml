@@ -1,0 +1,12 @@
+[project]
+name = "product-experimentation-recs"
+version = "0.1.0"
+description = "A product data science project for recommendation systems, ranking metrics, A/B testing, and causal inference."
+authors = [
+    { name = "Kyle Levesque" }
+]
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

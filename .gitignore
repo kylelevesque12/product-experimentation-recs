@@ -1,13 +1,25 @@
-.DS_Store
-.venv/
+# Python
 __pycache__/
 *.py[cod]
+.venv/
+venv/
+.env
 
+# Jupyter
+.ipynb_checkpoints/
+
+# Data
 data/raw/*
-!data/raw/.gitkeep
-
 data/processed/*
+!data/raw/.gitkeep
 !data/processed/.gitkeep
 
+# Models / outputs
+models/
+*.pkl
+*.joblib
 reports/figures/*
 !reports/figures/.gitkeep
+
+# System
+.DS_Store
