@@ -1,4 +1,11 @@
-from src.metrics import precision_at_k, recall_at_k, ndcg_at_k
+import math
+
+from src.metrics import (
+    precision_at_k,
+    recall_at_k,
+    ndcg_at_k,
+    rated_precision_at_k,
+)
 
 
 def test_precision_at_k_counts_relevant_recommendations():
@@ -48,4 +55,32 @@ def test_ndcg_at_k_rewards_relevant_items_near_top():
     assert better_score > worse_score
     assert better_score == 1.0
 
-    
+
+def test_rated_precision_at_k_only_scores_recommendations_that_were_rated():
+    recommended_items = [10, 20, 30, 40, 50]
+    positive_items = {20, 60}
+    rated_items = {20, 40, 60}
+
+    score = rated_precision_at_k(
+        recommended_items=recommended_items,
+        positive_items=positive_items,
+        rated_items=rated_items,
+        k=5,
+    )
+
+    assert score == 0.5
+
+
+def test_rated_precision_at_k_returns_nan_when_no_recommendations_were_rated():
+    recommended_items = [10, 20, 30]
+    positive_items = {40}
+    rated_items = {40, 50}
+
+    score = rated_precision_at_k(
+        recommended_items=recommended_items,
+        positive_items=positive_items,
+        rated_items=rated_items,
+        k=3,
+    )
+
+    assert math.isnan(score)

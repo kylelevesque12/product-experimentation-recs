@@ -77,3 +77,32 @@ def ndcg_at_k(
 
     return dcg / ideal_dcg
 
+
+def rated_precision_at_k(
+    recommended_items: list[int],
+    positive_items: set[int],
+    rated_items: set[int],
+    k: int,
+) -> float:
+    """Calculate precision among top-K recommendations the user later rated."""
+    if k <= 0:
+        raise ValueError("k must be positive.")
+
+    top_k_items = recommended_items[:k]
+
+    rated_recommendations = []
+
+    for item in top_k_items:
+        if item in rated_items:
+            rated_recommendations.append(item)
+
+    if len(rated_recommendations) == 0:
+        return float("nan")
+
+    hits = 0
+
+    for item in rated_recommendations:
+        if item in positive_items:
+            hits += 1
+
+    return hits / len(rated_recommendations)

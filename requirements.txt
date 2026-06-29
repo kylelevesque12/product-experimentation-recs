@@ -7,3 +7,4 @@ pytest
 requests
 tqdm
 ipykernel
+scikit-learn
