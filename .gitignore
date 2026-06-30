@@ -18,8 +18,6 @@ data/processed/*
 models/
 *.pkl
 *.joblib
-reports/figures/*
-!reports/figures/.gitkeep
 
 # System
 .DS_Store
